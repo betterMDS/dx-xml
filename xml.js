@@ -1,10 +1,42 @@
 (function(define){
-define([
+define([], function(){
 
-], function(){
 	var log = function(){
 		//console.log.apply(console, arguments);
 	};
+
+	var isIE = function(){
+		return /MSIE/.test(navigator.userAgent);
+	}
+
+
+	// TODO!!!!
+	// this code was in my XHR object and it obviously didn't belong there.
+	// Hence, this is not being used, but will be soon when I can get a chance
+	// to do some testing.
+	// The purpose is that IE is real funny about XML and returns text. This
+	// will convert it to XML and then you can parse it.
+	//
+	var ieXml = function(str){
+		var ms = function(n){ return "MSXML" + n + ".DOMDocument"; };
+		var dp = ["Microsoft.XMLDOM", ms(6), ms(4), ms(3), ms(2)];
+		var result;
+		for(var i=0;i<dp.length;i++){
+			var p = dp[i];
+			try{
+				var dom = new ActiveXObject(p);
+				dom.async = false;
+				dom.loadXML(str);
+				result = dom;
+			}catch(e){
+				continue;
+			}
+		}
+		return result;
+	};
+
+
+
 
 	var isArray = function(obj){
 		return obj instanceof Array;
@@ -50,9 +82,7 @@ define([
 		return o1;
 	}
 
-	var isIE = function(){
-		return /MSIE/.test(navigator.userAgent);
-	}
+
 
 	var xml = {
 		// node names that are expected to be an array, even if only one node
@@ -299,5 +329,5 @@ define([
 
 });
 })(typeof define == "undefined" ? function(deps, factory){
-	timer = factory();
+	window.xmlToObject = factory();
 } : define);
