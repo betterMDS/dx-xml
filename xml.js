@@ -63,7 +63,7 @@ define([], function(){
 		var o1 = {};
 		for(var nm in o){
 			if(typeof(o[nm]) == "object"){
-				o1[nm] = this.copy(o[nm])
+				o1[nm] = copy(o[nm])
 			}else{
 				o1[nm] = o[nm]
 			}
@@ -136,7 +136,6 @@ define([], function(){
 					//log(" Obj:", attOb[this.getLocalName(atts[i])])
 					//log(" Att:", node.attributes[i].nodeValue)
 					attOb[this.getLocalName(atts[i])] = atts[i].nodeValue;
-					hasAtts = true ;
 					//log("    at... ", this.getLocalName(atts[i]))
 				}
 				return attOb;
