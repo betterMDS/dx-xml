@@ -136,7 +136,6 @@ define([], function(){
 					//log(" Obj:", attOb[this.getLocalName(atts[i])])
 					//log(" Att:", node.attributes[i].nodeValue)
 					attOb[this.getLocalName(atts[i])] = atts[i].nodeValue;
-					hasAtts = true ;
 					//log("    at... ", this.getLocalName(atts[i]))
 				}
 				return attOb;
